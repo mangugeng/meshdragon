@@ -24,7 +24,9 @@
         }
     },
     "Navigation": {
-        "language": "Bahasa",
+        "language": "Pilih Bahasa",
+        "english": "Bahasa Inggris",
+        "indonesian": "Bahasa Indonesia",
         "features": "Fitur",
         "about": "Tentang"
     },

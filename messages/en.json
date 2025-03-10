@@ -24,7 +24,9 @@
         }
     },
     "Navigation": {
-        "language": "Language",
+        "language": "Select Language",
+        "english": "English",
+        "indonesian": "Indonesian",
         "features": "Features",
         "about": "About"
     },
