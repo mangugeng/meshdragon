@@ -1,4 +1,4 @@
-import SketchfabModel from './components/SketchfabModel'
+import ModelViewer from './components/ModelViewer'
 
 export default function Home() {
   return (
@@ -8,13 +8,11 @@ export default function Home() {
         <div className="hero-glow top-1/4 left-1/4 animate-pulse" />
         <div className="hero-glow bottom-1/4 right-1/4 animate-pulse delay-1000" />
         <div className="absolute inset-0 z-0">
-          <SketchfabModel
+          <ModelViewer
             modelId="2bc6a6d32e0747a2bf767fc094095f16"
             title="Space Hangar"
             author="Jayson Stauffer"
             authorUrl="https://sketchfab.com/jaysonstauffer"
-            ui_controls={false}
-            ui_infos={false}
           />
         </div>
         <div className="relative z-10 text-center max-w-4xl mx-auto bg-black/30 backdrop-blur-sm p-8 rounded-2xl">

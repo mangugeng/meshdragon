@@ -11,19 +11,27 @@ interface SketchfabModelProps {
   ui_infos: boolean
 }
 
-export default function SketchfabModel({ modelId, title, author, authorUrl, ui_controls, ui_infos }: SketchfabModelProps) {
+export default function SketchfabModel({
+  modelId,
+  title,
+  author,
+  authorUrl,
+  ui_controls,
+  ui_infos
+}: SketchfabModelProps) {
   const t = useTranslations('Model')
-  const embedUrl = `https://sketchfab.com/models/${modelId}/embed?ui_infos=${ui_infos}&ui_controls=${ui_controls}&transparent=1&autostart=1&navigationMode=drag&preload=1`
+  const embedUrl = `https://sketchfab.com/models/${modelId}/embed?autostart=1&ui_controls=${ui_controls ? 1 : 0}&ui_infos=${ui_infos ? 1 : 0}`
 
   return (
     <div className="relative w-full h-full">
       <iframe
         title={`${title} by ${author}`}
-        src={embedUrl}
-        className="absolute inset-0 w-full h-full"
-        allow="accelerometer; gyroscope; magnetometer; xr-spatial-tracking; autoplay; fullscreen"
         frameBorder="0"
-        style={{ minHeight: '400px' }}
+        allowFullScreen
+        loading="lazy"
+        src={embedUrl}
+        style={{ width: '100%', height: '100%', minHeight: '400px' }}
+        allow="autoplay; fullscreen; xr-spatial-tracking"
       />
       <div className="absolute bottom-0 right-0 p-2 text-xs text-white bg-black bg-opacity-50">
         <a href={authorUrl} target="_blank" rel="noopener noreferrer">
