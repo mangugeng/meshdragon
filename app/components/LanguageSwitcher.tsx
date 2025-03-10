@@ -2,10 +2,8 @@
 
 import { useLocale } from 'next-intl'
 import { usePathname, useRouter } from 'next-intl/client'
-import { useTranslations } from 'next-intl'
 
 export default function LanguageSwitcher() {
-  const t = useTranslations('Navigation')
   const locale = useLocale()
   const router = useRouter()
   const pathname = usePathname()
