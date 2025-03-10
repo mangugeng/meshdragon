@@ -22,6 +22,11 @@ export default function SketchfabModel({ modelId, title, author, authorUrl, ui_c
         frameBorder="0"
         style={{ minHeight: '400px' }}
       />
+      <div className="absolute bottom-0 right-0 p-2 text-xs text-white bg-black bg-opacity-50">
+        <a href={authorUrl} target="_blank" rel="noopener noreferrer">
+          Model by {author}
+        </a>
+      </div>
     </div>
   )
 } 
