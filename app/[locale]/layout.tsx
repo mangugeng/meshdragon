@@ -15,9 +15,8 @@ export default async function LocaleLayout({
   let messages
   try {
     messages = (await import(`../../messages/${locale}.json`)).default
-  } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error)
-    console.error(`Failed to load messages for locale ${locale}: ${errorMessage}`)
+  } catch (/* eslint-disable-next-line @typescript-eslint/no-unused-vars */ error: unknown) {
+    console.error(`Failed to load messages for locale ${locale}`)
     notFound()
   }
 
