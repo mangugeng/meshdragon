@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 17, 24, 39;
+    --background-end-rgb: 0, 0, 0;
+    --accent-color: 99, 102, 241;
+}
+
+body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(to bottom,
+            rgb(var(--background-start-rgb)),
+            rgb(var(--background-end-rgb)));
+    min-height: 100vh;
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #4f46e5, #818cf8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.card-gradient {
+    background: linear-gradient(135deg,
+            rgba(79, 70, 229, 0.1),
+            rgba(79, 70, 229, 0.05));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+.hero-glow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: rgba(79, 70, 229, 0.3);
+    filter: blur(100px);
+    border-radius: 100%;
+}
+
+@layer utilities {
+    .button-primary {
+        @apply bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition duration-300;
+    }
+
+    .button-secondary {
+        @apply border border-indigo-600 text-white hover:bg-indigo-600/10 font-bold py-3 px-8 rounded-full transition duration-300;
+    }
+}
