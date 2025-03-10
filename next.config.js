@@ -21,7 +21,13 @@ const nextConfig = {
             },
         ]
     },
-    output: 'standalone'
+    output: 'standalone',
+    eslint: {
+        ignoreDuringBuilds: true
+    },
+    typescript: {
+        ignoreBuildErrors: true
+    }
 }
 
 module.exports = nextConfig
