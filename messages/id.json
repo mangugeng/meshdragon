@@ -1,0 +1,34 @@
+{
+    "Index": {
+        "title": "Selamat Datang di MeshDragon",
+        "description": "Rasakan kekuatan visualisasi 3D",
+        "features": {
+            "title": "Fitur",
+            "realtime": {
+                "title": "Pengeditan 3D Real-time",
+                "description": "Edit dan visualisasikan model 3D secara real-time dengan umpan balik instan"
+            },
+            "performance": {
+                "title": "Performa Optimal",
+                "description": "Dioptimalkan untuk performa yang lancar di semua perangkat"
+            },
+            "collaboration": {
+                "title": "Kolaborasi Tim",
+                "description": "Bekerja sama dengan lancar dalam proyek 3D"
+            }
+        },
+        "cta": {
+            "title": "Siap untuk memulai?",
+            "description": "Bergabunglah dengan kami dan wujudkan ide Anda menjadi kenyataan",
+            "button": "Mulai Sekarang"
+        }
+    },
+    "Navigation": {
+        "language": "Bahasa",
+        "features": "Fitur",
+        "about": "Tentang"
+    },
+    "Model": {
+        "by": "Model oleh"
+    }
+}

@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 interface SketchfabModelProps {
   modelId: string
   title: string
@@ -10,6 +12,7 @@ interface SketchfabModelProps {
 }
 
 export default function SketchfabModel({ modelId, title, author, authorUrl, ui_controls, ui_infos }: SketchfabModelProps) {
+  const t = useTranslations('Model')
   const embedUrl = `https://sketchfab.com/models/${modelId}/embed?ui_infos=${ui_infos}&ui_controls=${ui_controls}&transparent=1&autostart=1&navigationMode=drag&preload=1`
 
   return (
@@ -24,7 +27,7 @@ export default function SketchfabModel({ modelId, title, author, authorUrl, ui_c
       />
       <div className="absolute bottom-0 right-0 p-2 text-xs text-white bg-black bg-opacity-50">
         <a href={authorUrl} target="_blank" rel="noopener noreferrer">
-          Model by {author}
+          {t('by')} {author}
         </a>
       </div>
     </div>

@@ -1,0 +1,34 @@
+{
+    "Index": {
+        "title": "Welcome to MeshDragon",
+        "description": "Experience the power of 3D visualization",
+        "features": {
+            "title": "Features",
+            "realtime": {
+                "title": "Real-time 3D Editing",
+                "description": "Edit and visualize 3D models in real-time with instant feedback"
+            },
+            "performance": {
+                "title": "Optimal Performance",
+                "description": "Optimized for smooth performance across all devices"
+            },
+            "collaboration": {
+                "title": "Team Collaboration",
+                "description": "Work together seamlessly on 3D projects"
+            }
+        },
+        "cta": {
+            "title": "Ready to get started?",
+            "description": "Join us and transform your ideas into reality",
+            "button": "Get Started"
+        }
+    },
+    "Navigation": {
+        "language": "Language",
+        "features": "Features",
+        "about": "About"
+    },
+    "Model": {
+        "by": "Model by"
+    }
+}
