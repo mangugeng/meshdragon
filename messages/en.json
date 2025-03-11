@@ -192,6 +192,7 @@
     },
     "Footer": {
         "copyright": "© 2024 MeshDragon. All rights reserved.",
+        "rights": "All rights reserved",
         "links": {
             "privacy": "Privacy Policy",
             "terms": "Terms of Service",
