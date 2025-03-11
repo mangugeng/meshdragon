@@ -11,7 +11,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <DismissibleBanner
-        message="Chrome akan memperbarui pengalaman browsing dengan membatasi cookie pihak ketiga. Hal ini mungkin mempengaruhi beberapa fitur website."
+        message="This website is currently under development. Some features may not work as expected."
       />
       <Navigation />
       {children}
