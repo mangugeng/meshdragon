@@ -89,26 +89,26 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden mt-4 pb-4">
-            <div className="flex flex-col gap-4">
+          <div className="absolute left-0 right-0 top-full md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800">
+            <div className="px-4 py-6 flex flex-col gap-6">
               <Link
                 href={`/${locale}/features`}
-                className={`text-sm ${isActive('/features') ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
+                className={`text-base ${isActive('/features') ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
                 onClick={() => setIsOpen(false)}
               >
                 {t('features')}
               </Link>
               <Link
                 href={`/${locale}/about`}
-                className={`text-sm ${isActive('/about') ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
+                className={`text-base ${isActive('/about') ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
                 onClick={() => setIsOpen(false)}
               >
                 {t('about')}
               </Link>
-              <div className="flex items-center gap-2 pt-4 border-t border-gray-700">
+              <div className="flex items-center gap-4 pt-4 border-t border-gray-800">
                 <Link
                   href="/en"
-                  className={`text-sm ${locale === 'en' ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
+                  className={`text-base ${locale === 'en' ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
                   onClick={() => setIsOpen(false)}
                 >
                   {t('english')}
@@ -116,7 +116,7 @@ export default function Navigation() {
                 <span className="text-gray-600">|</span>
                 <Link
                   href="/id"
-                  className={`text-sm ${locale === 'id' ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
+                  className={`text-base ${locale === 'id' ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
                   onClick={() => setIsOpen(false)}
                 >
                   {t('indonesian')}
