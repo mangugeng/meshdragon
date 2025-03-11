@@ -34,7 +34,7 @@ export default function About({ params: { locale } }: { params: { locale: string
   ];
 
   return (
-    <main className="min-h-screen bg-[#000308] text-white pt-20">
+    <main className="min-h-screen bg-[#000308] text-white pt-24 md:pt-20">
       {/* Vision Section */}
       <section className="relative py-20 px-4 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse" />

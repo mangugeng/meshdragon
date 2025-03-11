@@ -16,7 +16,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
   });
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#000308]">
+    <main className="min-h-screen overflow-x-hidden bg-[#000308] pt-24 md:pt-20">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
         <div className="hero-glow top-1/4 left-1/4 animate-pulse" />

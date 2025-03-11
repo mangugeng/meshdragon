@@ -39,7 +39,7 @@ export default function Features({ params: { locale } }: { params: { locale: str
   ];
 
   return (
-    <main className="min-h-screen bg-[#000308] text-white">
+    <main className="min-h-screen bg-[#000308] text-white pt-24 md:pt-20">
       {/* Hero Section */}
       <section className="relative py-20 px-4">
         <div className="hero-glow top-1/4 left-1/4 animate-pulse" />
