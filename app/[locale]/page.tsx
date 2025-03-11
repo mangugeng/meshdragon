@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 
-const ModelViewer = dynamic(() => import('@/src/components/ModelViewer'), {
+const ModelViewer = dynamic(() => import('../components/ModelViewer'), {
   ssr: false,
   loading: () => (
     <div className="w-full h-full min-h-[400px] flex items-center justify-center bg-black/50">
