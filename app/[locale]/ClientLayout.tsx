@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import Navbar from '../components/Navbar';
+import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import DismissibleBanner from '../components/DismissibleBanner';
 
@@ -13,7 +13,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       <DismissibleBanner
         message="Chrome akan memperbarui pengalaman browsing dengan membatasi cookie pihak ketiga. Hal ini mungkin mempengaruhi beberapa fitur website."
       />
-      <Navbar />
+      <Navigation />
       {children}
       <Footer />
     </>
