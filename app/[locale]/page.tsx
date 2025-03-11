@@ -33,10 +33,12 @@ export default function Home({ params: { locale } }: { params: { locale: string 
           <span className="text-sm font-semibold tracking-wider uppercase mb-4 inline-block gradient-text">
             {t('subtitle')}
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          <h1 className="hero-title text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
             {t('title')}
             <br />
-            <span className="gradient-text">{t('titleHighlight')}</span>
+            <span className="bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600 bg-clip-text text-transparent">
+              {t('titleHighlight')}
+            </span>
           </h1>
           <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto text-gray-300">
             {t('description')}
