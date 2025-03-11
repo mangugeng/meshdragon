@@ -23,10 +23,10 @@ export default function Home({ params: { locale } }: { params: { locale: string 
         <div className="hero-glow bottom-1/4 right-1/4 animate-pulse delay-1000" />
         <div className="absolute inset-0 z-0">
           <ModelViewer
-            modelId="2bc6a6d32e0747a2bf767fc094095f16"
-            title="Space Hangar"
-            author="Jayson Stauffer"
-            authorUrl="https://sketchfab.com/jaysonstauffer"
+            modelId="47ba25df43b74600b4c744164b9ba71f"
+            title="Kyoto Cityscene"
+            author="Artemy Belzer"
+            authorUrl="https://sketchfab.com/artemybelzer"
           />
         </div>
         <div className="relative z-10 text-center max-w-4xl mx-auto bg-black/30 backdrop-blur-sm p-8 rounded-2xl">
