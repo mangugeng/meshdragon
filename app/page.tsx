@@ -1,43 +1,55 @@
+'use client'
+import { useState } from 'react'
 import ModelViewer from './components/ModelViewer'
 
 export default function Home() {
+  const [showHero, setShowHero] = useState(true)
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#000308]">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
-        <div className="hero-glow top-1/4 left-1/4 animate-pulse" />
-        <div className="hero-glow bottom-1/4 right-1/4 animate-pulse delay-1000" />
-        <div className="absolute inset-0 z-0">
-          <ModelViewer
-            modelId="2bc6a6d32e0747a2bf767fc094095f16"
-            title="Space Hangar"
-            author="Jayson Stauffer"
-            authorUrl="https://sketchfab.com/jaysonstauffer"
-          />
-        </div>
-        <div className="relative z-10 text-center max-w-4xl mx-auto bg-black/30 backdrop-blur-sm p-8 rounded-2xl">
-          <span className="text-sm font-semibold tracking-wider uppercase mb-4 inline-block gradient-text">
-            Platform Web3D Terkini
-          </span>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Jelajahi Dunia Digital
-            <br />
-            <span className="gradient-text">Tanpa Batas</span>
-          </h1>
-          <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto text-gray-300">
-            Hadirkan ide-ide kreatif Anda dalam bentuk visualisasi 3D yang memukau.
-            Platform modern untuk kreator digital masa kini.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="button-primary w-full sm:w-auto">
-              Mulai Sekarang
-            </button>
-            <button className="button-secondary w-full sm:w-auto">
-              Pelajari Lebih Lanjut
-            </button>
+      {showHero && (
+        <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+          <div className="hero-glow top-1/4 left-1/4 animate-pulse" />
+          <div className="hero-glow bottom-1/4 right-1/4 animate-pulse delay-1000" />
+          <div className="absolute inset-0 z-0">
+            <ModelViewer
+              modelId="47ba25df43b74600b4c744164b9ba71f"
+              title="Kyoto Cityscene"
+              author="Artemy Belzer"
+              authorUrl="https://sketchfab.com/artemybelzer"
+            />
           </div>
-        </div>
-      </section>
+          <div className="relative z-10 text-center max-w-4xl mx-auto bg-black/30 backdrop-blur-sm p-8 rounded-2xl">
+            <button
+              onClick={() => setShowHero(false)}
+              className="absolute -top-3 -right-3 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all border border-white/20"
+            >
+              <span className="text-white text-xl">&times;</span>
+            </button>
+            <span className="text-sm font-semibold tracking-wider uppercase mb-4 inline-block gradient-text">
+              Platform Web3D Terkini
+            </span>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              Jelajahi Dunia Digital
+              <br />
+              <span className="gradient-text">Tanpa Batas</span>
+            </h1>
+            <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto text-gray-300">
+              Hadirkan ide-ide kreatif Anda dalam bentuk visualisasi 3D yang memukau.
+              Platform modern untuk kreator digital masa kini.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button className="button-primary w-full sm:w-auto">
+                Mulai Sekarang
+              </button>
+              <button className="button-secondary w-full sm:w-auto">
+                Pelajari Lebih Lanjut
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Features Section */}
       <section className="py-20 px-4 relative overflow-hidden">

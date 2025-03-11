@@ -17,7 +17,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: 'Permissions-Policy',
-                        value: 'accelerometer=(self) deviceorientation=(self)'
+                        value: 'accelerometer=(), deviceorientation=()'
                     },
                     {
                         key: 'X-Frame-Options',
