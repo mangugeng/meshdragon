@@ -25,7 +25,7 @@ export default function SketchfabModel({
   return (
     <div className="relative w-full h-full">
       <iframe
-        title={`${title} by ${author}`}
+        title={title}
         frameBorder="0"
         allowFullScreen
         loading="lazy"
@@ -33,8 +33,13 @@ export default function SketchfabModel({
         style={{ width: '100%', height: '100%', minHeight: '400px' }}
         allow="autoplay; fullscreen; xr-spatial-tracking"
       />
-      <div className="absolute bottom-0 right-0 p-2 text-xs text-white bg-black bg-opacity-50">
-        <a href={authorUrl} target="_blank" rel="noopener noreferrer">
+      <div className="absolute bottom-0 right-0 p-2 text-xs text-white/70 bg-black/30 backdrop-blur-sm rounded-tl">
+        <a 
+          href={authorUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="hover:text-white transition-colors"
+        >
           {t('by')} {author}
         </a>
       </div>
