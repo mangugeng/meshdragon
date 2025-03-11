@@ -89,7 +89,7 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="absolute left-0 right-0 top-full w-full md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800">
+          <div className="fixed left-0 right-0 top-[72px] w-full md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800">
             <div className="w-full px-4 py-6 flex flex-col gap-6">
               <Link
                 href={`/${locale}/features`}

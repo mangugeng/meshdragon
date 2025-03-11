@@ -34,10 +34,10 @@ export default function About({ params: { locale } }: { params: { locale: string
   ];
 
   return (
-    <main className="min-h-screen bg-[#000308] text-white pt-24 md:pt-20">
+    <main className="min-h-screen bg-[#000308] text-white pt-24 md:pt-20 overflow-x-hidden">
       {/* Vision Section */}
       <section className="relative py-20 px-4 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse opacity-50" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
             {t('vision.title')}

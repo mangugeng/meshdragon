@@ -39,10 +39,10 @@ export default function Features({ params: { locale } }: { params: { locale: str
   ];
 
   return (
-    <main className="min-h-screen bg-[#000308] text-white pt-24 md:pt-20">
+    <main className="min-h-screen bg-[#000308] text-white pt-24 md:pt-20 overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative py-20 px-4">
-        <div className="hero-glow top-1/4 left-1/4 animate-pulse" />
+        <div className="hero-glow top-1/4 left-1/4 animate-pulse opacity-50" />
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">
             {t('hero.title')}
