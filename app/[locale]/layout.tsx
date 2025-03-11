@@ -1,15 +1,9 @@
-'use client';
-
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
-import Navigation from '../components/Navigation'
-import '../globals.css'
 import { unstable_setRequestLocale } from 'next-intl/server'
-import { useTranslations } from 'next-intl'
 import { Inter } from 'next/font/google'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import DismissibleBanner from '../components/DismissibleBanner'
+import '../globals.css'
+import ClientLayout from './ClientLayout'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,19 +22,12 @@ export default async function LocaleLayout({
   }
 
   unstable_setRequestLocale(locale)
-  const t = useTranslations('Layout')
 
   return (
     <html lang={locale}>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages} locale={locale}>
-          <DismissibleBanner 
-            message="Chrome akan memperbarui pengalaman browsing dengan membatasi cookie pihak ketiga. Hal ini mungkin mempengaruhi beberapa fitur website." 
-          />
-          <Navbar />
-          <Navigation />
-          {children}
-          <Footer />
+          <ClientLayout>{children}</ClientLayout>
         </NextIntlClientProvider>
       </body>
     </html>
