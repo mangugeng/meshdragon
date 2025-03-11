@@ -30,6 +30,73 @@
             "button": "Mulai Gratis"
         }
     },
+    "Features": {
+        "hero": {
+            "title": "Fitur Unggulan untuk Kreasi 3D",
+            "description": "Temukan semua alat dan fitur yang menjadikan MeshDragon platform sempurna untuk proyek kreatif 3D Anda"
+        },
+        "features": {
+            "modeling": {
+                "title": "Pemodelan 3D Canggih",
+                "description": "Buat dan edit model 3D kompleks langsung di browser Anda",
+                "points": {
+                    "1": "Pemodelan real-time dengan umpan balik instan",
+                    "2": "Dukungan berbagai format file",
+                    "3": "Alat optimasi mesh canggih"
+                }
+            },
+            "collaboration": {
+                "title": "Kolaborasi Tim",
+                "description": "Bekerja bersama dengan lancar bersama anggota tim Anda",
+                "points": {
+                    "1": "Pengeditan kolaboratif real-time",
+                    "2": "Kontrol versi dan riwayat",
+                    "3": "Izin dan peran tim"
+                }
+            },
+            "performance": {
+                "title": "Performa Optimal",
+                "description": "Rasakan performa yang lancar di semua perangkat",
+                "points": {
+                    "1": "Rendering berbasis WebGL",
+                    "2": "Generasi LOD otomatis",
+                    "3": "Dukungan loading progresif"
+                }
+            },
+            "export": {
+                "title": "Opsi Ekspor Fleksibel",
+                "description": "Ekspor karya Anda dalam berbagai format dan kualitas",
+                "points": {
+                    "1": "Dukungan multi format",
+                    "2": "Pengaturan ekspor kustom",
+                    "3": "Kemampuan ekspor massal"
+                }
+            },
+            "security": {
+                "title": "Keamanan Enterprise",
+                "description": "Jaga keamanan properti intelektual Anda",
+                "points": {
+                    "1": "Enkripsi end-to-end",
+                    "2": "Manajemen kontrol akses",
+                    "3": "Audit keamanan rutin"
+                }
+            },
+            "support": {
+                "title": "Dukungan 24/7",
+                "description": "Dapatkan bantuan kapan pun Anda butuhkan",
+                "points": {
+                    "1": "Dukungan live chat",
+                    "2": "Dokumentasi lengkap",
+                    "3": "Video tutorial dan panduan"
+                }
+            }
+        },
+        "cta": {
+            "title": "Siap Mengubah Alur Kerja 3D Anda?",
+            "description": "Bergabunglah dengan ribuan kreator yang telah merevolusi proses kreasi 3D mereka",
+            "button": "Mulai Gratis"
+        }
+    },
     "Navigation": {
         "language": "Pilih Bahasa",
         "english": "Bahasa Inggris",

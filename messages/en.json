@@ -30,6 +30,73 @@
             "button": "Start Free"
         }
     },
+    "Features": {
+        "hero": {
+            "title": "Powerful Features for 3D Creation",
+            "description": "Discover all the tools and features that make MeshDragon the perfect platform for your 3D creative projects"
+        },
+        "features": {
+            "modeling": {
+                "title": "Advanced 3D Modeling",
+                "description": "Create and edit complex 3D models directly in your browser",
+                "points": {
+                    "1": "Real-time modeling with instant feedback",
+                    "2": "Support for multiple file formats",
+                    "3": "Advanced mesh optimization tools"
+                }
+            },
+            "collaboration": {
+                "title": "Team Collaboration",
+                "description": "Work together seamlessly with your team members",
+                "points": {
+                    "1": "Real-time collaborative editing",
+                    "2": "Version control and history",
+                    "3": "Team permissions and roles"
+                }
+            },
+            "performance": {
+                "title": "Optimized Performance",
+                "description": "Experience smooth performance across all devices",
+                "points": {
+                    "1": "WebGL-powered rendering",
+                    "2": "Automatic LOD generation",
+                    "3": "Progressive loading support"
+                }
+            },
+            "export": {
+                "title": "Flexible Export Options",
+                "description": "Export your work in various formats and qualities",
+                "points": {
+                    "1": "Multiple format support",
+                    "2": "Custom export settings",
+                    "3": "Batch export capability"
+                }
+            },
+            "security": {
+                "title": "Enterprise Security",
+                "description": "Keep your intellectual property safe and secure",
+                "points": {
+                    "1": "End-to-end encryption",
+                    "2": "Access control management",
+                    "3": "Regular security audits"
+                }
+            },
+            "support": {
+                "title": "24/7 Support",
+                "description": "Get help whenever you need it",
+                "points": {
+                    "1": "Live chat support",
+                    "2": "Comprehensive documentation",
+                    "3": "Video tutorials and guides"
+                }
+            }
+        },
+        "cta": {
+            "title": "Ready to Transform Your 3D Workflow?",
+            "description": "Join thousands of creators who have already revolutionized their 3D creation process",
+            "button": "Get Started Free"
+        }
+    },
     "Navigation": {
         "language": "Select Language",
         "english": "English",
