@@ -5,7 +5,7 @@ export default createMiddleware({
   locales: ['en', 'id'],
   
   // Bahasa default
-  defaultLocale: 'en'
+  defaultLocale: 'id'
 });
 
 export const config = {

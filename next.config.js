@@ -8,6 +8,10 @@ const nextConfig = {
         })
         return config
     },
+    i18n: {
+        locales: ['en', 'id'],
+        defaultLocale: 'id'
+    },
     async headers() {
         return [
             {

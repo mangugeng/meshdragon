@@ -1,8 +1,9 @@
+import type { Metadata } from 'next'
 import './globals.css'
 
-export const metadata = {
-  title: 'Platform Web3D',
-  description: 'Platform Web3D masa depan dengan visualisasi yang memukau',
+export const metadata: Metadata = {
+  title: 'MeshDragon - 3D Web Platform',
+  description: 'Platform visualisasi 3D modern untuk kreator digital',
 }
 
 export default function RootLayout({
@@ -10,9 +11,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <html lang="id">
-      <body className="antialiased">{children}</body>
-    </html>
-  )
+  return children
 } 
