@@ -1,7 +1,8 @@
 import createMiddleware from 'next-intl/middleware';
-import { locales } from './i18n';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export default createMiddleware({
+const intlMiddleware = createMiddleware({
   // List bahasa yang didukung
   locales: ['en', 'id'],
 
@@ -14,6 +15,21 @@ export default createMiddleware({
   // Redirect ke halaman 404 yang sesuai
   localeDetection: true
 });
+
+export default function middleware(request: NextRequest) {
+  const response = intlMiddleware(request);
+
+  // Hapus deviceorientation dari Permissions-Policy header
+  if (response.headers.has('Permissions-Policy')) {
+    const permissionsPolicy = response.headers.get('Permissions-Policy')!
+      .split(',')
+      .filter(policy => !policy.includes('deviceorientation'))
+      .join(',');
+    response.headers.set('Permissions-Policy', permissionsPolicy);
+  }
+
+  return response;
+}
 
 export const config = {
   // Match semua path kecuali:
