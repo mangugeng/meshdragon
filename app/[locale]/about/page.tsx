@@ -97,17 +97,8 @@ export default function About({ params: { locale } }: { params: { locale: string
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-xl font-bold mb-2">
-                    {t(`team.members.${member.key}.name`)}
-                  </h3>
-                  <p className="text-sm text-gray-300 mb-4">
-                    {t(`team.members.${member.key}.role`)}
-                  </p>
-                  <p className="text-sm text-gray-400 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {t(`team.members.${member.key}.bio`)}
-                  </p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-0 group-hover:translate-y-0 transition-transform duration-300">
                   <div className="flex flex-wrap gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {member.expertise.map((skill, index) => (
                       <span
@@ -120,6 +111,15 @@ export default function About({ params: { locale } }: { params: { locale: string
                       </span>
                     ))}
                   </div>
+                  <p className="text-sm text-gray-400 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {t(`team.members.${member.key}.bio`)}
+                  </p>
+                  <h3 className="text-xl font-bold mb-1">
+                    {t(`team.members.${member.key}.name`)}
+                  </h3>
+                  <p className="text-sm text-gray-300 mb-3">
+                    {t(`team.members.${member.key}.role`)}
+                  </p>
                   <div className="flex gap-4">
                     <a
                       href={member.linkedin}
