@@ -46,6 +46,16 @@
                         "Performance Optimization"
                     ]
                 },
+                "operations": {
+                    "name": "Farhan Amirul Fikri",
+                    "role": "Head of Studio Operations",
+                    "bio": "Experienced studio operations manager with expertise in project management and content strategy. Dedicated to optimizing workflow and delivering high-quality results.",
+                    "expertise": [
+                        "Studio Operations",
+                        "Project Management",
+                        "Content Strategy"
+                    ]
+                },
                 "design": {
                     "name": "Rakeu Muladi",
                     "role": "Head of Design",

@@ -46,6 +46,16 @@
                         "Performance Optimization"
                     ]
                 },
+                "operations": {
+                    "name": "Farhan Amirul Fikri",
+                    "role": "Kepala Operasional Studio",
+                    "bio": "Manajer operasional studio berpengalaman dengan keahlian dalam manajemen proyek dan strategi konten. Berdedikasi untuk mengoptimalkan alur kerja dan menghasilkan kualitas terbaik.",
+                    "expertise": [
+                        "Operasional Studio",
+                        "Manajemen Proyek",
+                        "Strategi Konten"
+                    ]
+                },
                 "design": {
                     "name": "Rakeu Muladi",
                     "role": "Kepala Desain",
