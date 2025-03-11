@@ -1,4 +1,13 @@
-import ModelViewer from './components/ModelViewer'
+import dynamic from 'next/dynamic'
+
+const ModelViewer = dynamic(() => import('@/app/[locale]/components/ModelViewer'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full min-h-[400px] flex items-center justify-center bg-black/50">
+      <div className="text-white">Loading 3D Model...</div>
+    </div>
+  )
+})
 
 export default function Home() {
   return (
