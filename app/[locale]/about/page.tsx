@@ -24,20 +24,20 @@ export default function About({ params: { locale } }: { params: { locale: string
       expertise: ['WebGL', 'Three.js', 'Performance Optimization']
     },
     {
-      key: 'operations',
-      image: '/team/operations.jpg',
-      gradient: 'from-yellow-500 to-orange-500',
-      linkedin: 'https://linkedin.com/in/farhanamirulfikri',
-      github: 'https://github.com/farhanamirulfikri',
-      expertise: ['Studio Operations', 'Project Management', 'Content Strategy']
-    },
-    {
       key: 'design',
       image: '/team/design.jpg',
       gradient: 'from-green-500 to-emerald-500',
       linkedin: 'https://linkedin.com/in/rakeumuladi',
       github: 'https://github.com/rakeumuladi',
       expertise: ['UI/UX Design', '3D Interface', 'Motion Design']
+    },
+    {
+      key: 'operations',
+      image: '/team/operations.jpg',
+      gradient: 'from-yellow-500 to-orange-500',
+      linkedin: 'https://linkedin.com/in/farhanamirulfikri',
+      github: 'https://github.com/farhanamirulfikri',
+      expertise: ['Studio Operations', 'Project Management', 'Content Strategy']
     }
   ];
 
