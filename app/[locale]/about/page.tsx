@@ -84,11 +84,11 @@ export default function About({ params: { locale } }: { params: { locale: string
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
             {teamMembers.map((member) => (
               <div
                 key={member.key}
-                className="group relative overflow-hidden rounded-xl aspect-square bg-gradient-to-b from-transparent to-black/80"
+                className="group relative overflow-hidden rounded-xl aspect-square bg-gradient-to-b from-transparent to-black/80 hover:scale-105 transition-all duration-300"
               >
                 <Image
                   src={member.image}
