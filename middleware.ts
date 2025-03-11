@@ -9,7 +9,10 @@ export default createMiddleware({
   defaultLocale: 'id',
 
   // Lokalisasi paths
-  localePrefix: 'always'
+  localePrefix: 'always',
+
+  // Redirect ke halaman 404 yang sesuai
+  localeDetection: true
 });
 
 export const config = {
@@ -17,5 +20,5 @@ export const config = {
   // - API routes (/api/*)
   // - Static files (*.jpg, *.png, dll)
   // - Internal Next.js files
-  matcher: ['/', '/(en|id)/:path*', '/((?!api|_next|_vercel|.*\\..*).*)']
+  matcher: ['/', '/((?!api|_next|_vercel|.*\\..*).*)', '/(en|id)/:path*']
 }; 
