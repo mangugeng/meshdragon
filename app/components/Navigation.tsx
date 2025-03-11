@@ -9,6 +9,10 @@ export default function Navigation() {
   const pathname = usePathname()
   const locale = pathname.split('/')[1]
 
+  const isActive = (path: string) => {
+    return pathname === `/${locale}${path}`
+  }
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto px-4 py-4">
@@ -23,9 +27,15 @@ export default function Navigation() {
           <div className="flex items-center gap-6">
             <Link
               href={`/${locale}/features`}
-              className="text-white hover:text-gray-200 transition-colors"
+              className={`text-sm ${isActive('/features') ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
             >
               {t('features')}
+            </Link>
+            <Link
+              href={`/${locale}/about`}
+              className={`text-sm ${isActive('/about') ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
+            >
+              {t('about')}
             </Link>
             <div className="flex items-center gap-2">
               <Link

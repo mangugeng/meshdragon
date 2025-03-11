@@ -17,7 +17,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: 'Permissions-Policy',
-                        value: 'accelerometer=*, gyroscope=*, magnetometer=*, xr-spatial-tracking=*'
+                        value: 'accelerometer=(), deviceorientation=()'
                     }
                 ],
             },

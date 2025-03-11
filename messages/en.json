@@ -1,4 +1,69 @@
 {
+    "Metadata": {
+        "title": "MeshDragon - Advanced Web3D Platform",
+        "description": "Create, edit, and share stunning 3D visualizations with MeshDragon. A modern platform for today's digital creators."
+    },
+    "About": {
+        "vision": {
+            "title": "Our Vision",
+            "description": "We're building the future of 3D content creation, making professional-grade tools accessible to everyone.",
+            "values": {
+                "innovation": {
+                    "title": "Innovation",
+                    "description": "Pushing the boundaries of what's possible in web-based 3D creation"
+                },
+                "accessibility": {
+                    "title": "Accessibility",
+                    "description": "Making professional 3D tools available to creators of all levels"
+                },
+                "community": {
+                    "title": "Community",
+                    "description": "Building a vibrant ecosystem of creators and developers"
+                }
+            }
+        },
+        "team": {
+            "title": "Meet Our Team",
+            "description": "A passionate group of creators and innovators dedicated to revolutionizing 3D content creation",
+            "members": {
+                "founder": {
+                    "name": "Mang Ugeng",
+                    "role": "Founder & CEO",
+                    "bio": "Experienced software developer with a passion for 3D and modern web technologies. Has a vision to make 3D technology more accessible to everyone.",
+                    "expertise": [
+                        "Web Development",
+                        "3D Graphics",
+                        "Business Strategy"
+                    ]
+                },
+                "tech": {
+                    "name": "Demi Dasmana",
+                    "role": "Chief Technology Officer",
+                    "bio": "Expert in WebGL and 3D graphics with over 8 years of experience in developing performant web applications.",
+                    "expertise": [
+                        "WebGL",
+                        "Three.js",
+                        "Performance Optimization"
+                    ]
+                },
+                "design": {
+                    "name": "Rakeu Muladi",
+                    "role": "Head of Design",
+                    "bio": "UI/UX designer focused on intuitive user experiences and modern aesthetics. Specialist in 3D interface design.",
+                    "expertise": [
+                        "UI/UX Design",
+                        "3D Interface",
+                        "Motion Design"
+                    ]
+                }
+            }
+        },
+        "contact": {
+            "title": "Get in Touch",
+            "description": "Have questions or want to learn more? We'd love to hear from you.",
+            "button": "Contact Us"
+        }
+    },
     "Index": {
         "developmentBanner": "This website is currently under development. Some features may not work as expected.",
         "loading": "Loading 3D Model...",
@@ -106,5 +171,10 @@
     },
     "Model": {
         "by": "Model by"
+    },
+    "NotFound": {
+        "title": "404 - Page Not Found",
+        "description": "The page you are looking for does not exist or has been moved.",
+        "button": "Return Home"
     }
 }

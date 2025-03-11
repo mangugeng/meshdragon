@@ -1,4 +1,69 @@
 {
+    "Metadata": {
+        "title": "MeshDragon - Platform Web3D Terkini",
+        "description": "Buat, edit, dan bagikan visualisasi 3D yang memukau dengan MeshDragon. Platform modern untuk kreator digital masa kini."
+    },
+    "About": {
+        "vision": {
+            "title": "Visi Kami",
+            "description": "Kami membangun masa depan kreasi konten 3D, membuat alat profesional dapat diakses oleh semua orang.",
+            "values": {
+                "innovation": {
+                    "title": "Inovasi",
+                    "description": "Mendorong batas kemungkinan dalam pembuatan 3D berbasis web"
+                },
+                "accessibility": {
+                    "title": "Aksesibilitas",
+                    "description": "Menyediakan alat 3D profesional untuk kreator di semua tingkatan"
+                },
+                "community": {
+                    "title": "Komunitas",
+                    "description": "Membangun ekosistem kreator dan pengembang yang dinamis"
+                }
+            }
+        },
+        "team": {
+            "title": "Tim Kami",
+            "description": "Sekelompok kreator dan inovator yang berdedikasi untuk merevolusi pembuatan konten 3D",
+            "members": {
+                "founder": {
+                    "name": "Mang Ugeng",
+                    "role": "Pendiri & CEO",
+                    "bio": "Pengembang software berpengalaman dengan passion di bidang 3D dan teknologi web modern. Memiliki visi untuk membuat teknologi 3D lebih mudah diakses oleh semua orang.",
+                    "expertise": [
+                        "Web Development",
+                        "3D Graphics",
+                        "Business Strategy"
+                    ]
+                },
+                "tech": {
+                    "name": "Demi Dasmana",
+                    "role": "Kepala Teknologi",
+                    "bio": "Ahli di bidang WebGL dan grafis 3D dengan pengalaman lebih dari 8 tahun dalam pengembangan aplikasi web performant.",
+                    "expertise": [
+                        "WebGL",
+                        "Three.js",
+                        "Performance Optimization"
+                    ]
+                },
+                "design": {
+                    "name": "Rakeu Muladi",
+                    "role": "Kepala Desain",
+                    "bio": "Desainer UI/UX dengan fokus pada pengalaman pengguna yang intuitif dan estetika modern. Spesialis dalam desain antarmuka 3D.",
+                    "expertise": [
+                        "UI/UX Design",
+                        "3D Interface",
+                        "Motion Design"
+                    ]
+                }
+            }
+        },
+        "contact": {
+            "title": "Hubungi Kami",
+            "description": "Punya pertanyaan atau ingin tahu lebih banyak? Kami senang mendengar dari Anda.",
+            "button": "Hubungi Kami"
+        }
+    },
     "Index": {
         "developmentBanner": "Website ini sedang dalam tahap pengembangan. Beberapa fitur mungkin belum berfungsi dengan baik.",
         "loading": "Memuat Model 3D...",
@@ -106,5 +171,10 @@
     },
     "Model": {
         "by": "Model oleh"
+    },
+    "NotFound": {
+        "title": "404 - Halaman Tidak Ditemukan",
+        "description": "Halaman yang Anda cari tidak ada atau telah dipindahkan.",
+        "button": "Kembali ke Beranda"
     }
 }
