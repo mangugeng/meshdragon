@@ -176,5 +176,16 @@
         "title": "404 - Page Not Found",
         "description": "The page you are looking for does not exist or has been moved.",
         "button": "Return Home"
+    },
+    "Layout": {
+        "developmentBanner": "This website is currently under development. Some features may not work as expected."
+    },
+    "Footer": {
+        "copyright": "© 2024 MeshDragon. All rights reserved.",
+        "links": {
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Service",
+            "contact": "Contact"
+        }
     }
 }

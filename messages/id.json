@@ -176,5 +176,16 @@
         "title": "404 - Halaman Tidak Ditemukan",
         "description": "Halaman yang Anda cari tidak ada atau telah dipindahkan.",
         "button": "Kembali ke Beranda"
+    },
+    "Layout": {
+        "developmentBanner": "Website ini sedang dalam tahap pengembangan. Beberapa fitur mungkin belum berfungsi dengan baik."
+    },
+    "Footer": {
+        "copyright": "© 2024 MeshDragon. Hak cipta dilindungi.",
+        "links": {
+            "privacy": "Kebijakan Privasi",
+            "terms": "Ketentuan Layanan",
+            "contact": "Kontak"
+        }
     }
 }
