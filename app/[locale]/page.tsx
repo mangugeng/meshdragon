@@ -1,13 +1,11 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic'
-import { useState } from 'react';
 import HeroContent from '../components/HeroContent';
 
 export default function Home({ params: { locale } }: { params: { locale: string } }) {
   unstable_setRequestLocale(locale);
   const t = useTranslations('Index');
-  const [showHeroContent, setShowHeroContent] = useState(true);
 
   const ModelViewer = dynamic(() => import('../components/ModelViewer'), {
     ssr: false,
