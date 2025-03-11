@@ -3,11 +3,13 @@
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { useState } from 'react'
 
 export default function Navigation() {
   const t = useTranslations('Navigation')
   const pathname = usePathname()
   const locale = pathname.split('/')[1]
+  const [isOpen, setIsOpen] = useState(false)
 
   const isActive = (path: string) => {
     return pathname === `/${locale}${path}`
@@ -24,7 +26,8 @@ export default function Navigation() {
             MeshDragon
           </Link>
 
-          <div className="flex items-center gap-6">
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-6">
             <Link
               href={`/${locale}/features`}
               className={`text-sm ${isActive('/features') ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
@@ -53,7 +56,75 @@ export default function Navigation() {
               </Link>
             </div>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 text-gray-400 hover:text-white focus:outline-none"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden mt-4 pb-4">
+            <div className="flex flex-col gap-4">
+              <Link
+                href={`/${locale}/features`}
+                className={`text-sm ${isActive('/features') ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
+                onClick={() => setIsOpen(false)}
+              >
+                {t('features')}
+              </Link>
+              <Link
+                href={`/${locale}/about`}
+                className={`text-sm ${isActive('/about') ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
+                onClick={() => setIsOpen(false)}
+              >
+                {t('about')}
+              </Link>
+              <div className="flex items-center gap-2 pt-4 border-t border-gray-700">
+                <Link
+                  href="/en"
+                  className={`text-sm ${locale === 'en' ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {t('english')}
+                </Link>
+                <span className="text-gray-600">|</span>
+                <Link
+                  href="/id"
+                  className={`text-sm ${locale === 'id' ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {t('indonesian')}
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   )
