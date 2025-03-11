@@ -1,0 +1,16 @@
+{
+    "buildCommand": "npm run build",
+    "devCommand": "npm run dev",
+    "installCommand": "npm install",
+    "framework": "nextjs",
+    "rewrites": [
+        {
+            "source": "/:locale(en|id)/:path*",
+            "destination": "/:locale/:path*"
+        },
+        {
+            "source": "/:path*",
+            "destination": "/en/:path*"
+        }
+    ]
+}
