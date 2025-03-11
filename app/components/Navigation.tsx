@@ -16,9 +16,9 @@ export default function Navigation() {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm">
-      <div className="max-w-6xl mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm w-full">
+      <div className="w-full max-w-6xl mx-auto px-4 py-4">
+        <div className="flex items-center justify-between w-full">
           <Link 
             href={`/${locale}`}
             className="text-xl font-bold text-white hover:text-gray-200 transition-colors"
@@ -89,8 +89,8 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="absolute left-0 right-0 top-full md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800">
-            <div className="px-4 py-6 flex flex-col gap-6">
+          <div className="absolute left-0 right-0 top-full w-full md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800">
+            <div className="w-full px-4 py-6 flex flex-col gap-6">
               <Link
                 href={`/${locale}/features`}
                 className={`text-base ${isActive('/features') ? 'text-white' : 'text-gray-400 hover:text-white'} transition-colors`}
