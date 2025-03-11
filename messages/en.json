@@ -1,26 +1,32 @@
 {
     "Index": {
-        "title": "Welcome to MeshDragon",
-        "description": "Experience the power of 3D visualization",
+        "loading": "Loading 3D Model...",
+        "subtitle": "Latest Web3D Platform",
+        "title": "Explore Digital World",
+        "titleHighlight": "Without Limits",
+        "description": "Bring your creative ideas to life with stunning 3D visualizations. A modern platform for today's digital creators.",
+        "learnMore": "Learn More",
         "features": {
-            "title": "Features",
+            "title": "Featured Features",
+            "subtitle": "Everything You Need",
+            "description": "A complete platform with advanced features to create, edit, and share your 3D content",
             "realtime": {
                 "title": "Real-time 3D Editing",
-                "description": "Edit and visualize 3D models in real-time with instant feedback"
+                "description": "Edit and preview 3D models directly in your browser without additional software"
             },
             "performance": {
                 "title": "Optimal Performance",
-                "description": "Optimized for smooth performance across all devices"
+                "description": "Optimized for maximum performance on all devices with the latest WebGL technology"
             },
             "collaboration": {
                 "title": "Team Collaboration",
-                "description": "Work together seamlessly on 3D projects"
+                "description": "Work with your team in real-time with powerful collaboration features"
             }
         },
         "cta": {
-            "title": "Ready to get started?",
-            "description": "Join us and transform your ideas into reality",
-            "button": "Get Started"
+            "title": "Ready to Get Started?",
+            "description": "Join thousands of digital creators who have used our platform",
+            "button": "Start Free"
         }
     },
     "Navigation": {

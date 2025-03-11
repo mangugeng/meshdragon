@@ -1,26 +1,32 @@
 {
     "Index": {
-        "title": "Selamat Datang di MeshDragon",
-        "description": "Rasakan kekuatan visualisasi 3D",
+        "loading": "Memuat Model 3D...",
+        "subtitle": "Platform Web3D Terkini",
+        "title": "Jelajahi Dunia Digital",
+        "titleHighlight": "Tanpa Batas",
+        "description": "Hadirkan ide-ide kreatif Anda dalam bentuk visualisasi 3D yang memukau. Platform modern untuk kreator digital masa kini.",
+        "learnMore": "Pelajari Lebih Lanjut",
         "features": {
-            "title": "Fitur",
+            "title": "Fitur Unggulan",
+            "subtitle": "Semua Yang Anda Butuhkan",
+            "description": "Platform lengkap dengan berbagai fitur canggih untuk membuat, mengedit, dan membagikan konten 3D Anda",
             "realtime": {
                 "title": "Pengeditan 3D Real-time",
-                "description": "Edit dan visualisasikan model 3D secara real-time dengan umpan balik instan"
+                "description": "Edit dan preview model 3D secara langsung di browser tanpa perlu software tambahan"
             },
             "performance": {
                 "title": "Performa Optimal",
-                "description": "Dioptimalkan untuk performa yang lancar di semua perangkat"
+                "description": "Dioptimalkan untuk kinerja maksimal di semua perangkat dengan teknologi WebGL terkini"
             },
             "collaboration": {
                 "title": "Kolaborasi Tim",
-                "description": "Bekerja sama dengan lancar dalam proyek 3D"
+                "description": "Bekerja bersama tim Anda dalam waktu nyata dengan fitur kolaborasi yang powerful"
             }
         },
         "cta": {
-            "title": "Siap untuk memulai?",
-            "description": "Bergabunglah dengan kami dan wujudkan ide Anda menjadi kenyataan",
-            "button": "Mulai Sekarang"
+            "title": "Siap Untuk Memulai?",
+            "description": "Bergabunglah dengan ribuan kreator digital yang telah menggunakan platform kami",
+            "button": "Mulai Gratis"
         }
     },
     "Navigation": {

@@ -1,3 +1,5 @@
+const withNextIntl = require('next-intl/plugin')('./i18n.ts');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     transpilePackages: ['three'],
@@ -27,10 +29,7 @@ const nextConfig = {
     },
     typescript: {
         ignoreBuildErrors: true
-    },
-    experimental: {
-        appDir: true
     }
 }
 
-module.exports = nextConfig
+module.exports = withNextIntl(nextConfig);

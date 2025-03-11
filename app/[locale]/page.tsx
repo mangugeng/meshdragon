@@ -1,15 +1,20 @@
+import { unstable_setRequestLocale } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic'
 
-const ModelViewer = dynamic(() => import('../components/ModelViewer'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full min-h-[400px] flex items-center justify-center bg-black/50">
-      <div className="text-white">Loading 3D Model...</div>
-    </div>
-  )
-})
+export default function Home({ params: { locale } }: { params: { locale: string } }) {
+  unstable_setRequestLocale(locale);
+  const t = useTranslations('Index');
 
-export default function Home() {
+  const ModelViewer = dynamic(() => import('../components/ModelViewer'), {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full min-h-[400px] flex items-center justify-center bg-black/50">
+        <div className="text-white">Loading 3D Model...</div>
+      </div>
+    )
+  });
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#000308]">
       {/* Hero Section */}
@@ -26,23 +31,22 @@ export default function Home() {
         </div>
         <div className="relative z-10 text-center max-w-4xl mx-auto bg-black/30 backdrop-blur-sm p-8 rounded-2xl">
           <span className="text-sm font-semibold tracking-wider uppercase mb-4 inline-block gradient-text">
-            Platform Web3D Terkini
+            {t('subtitle')}
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Jelajahi Dunia Digital
+            {t('title')}
             <br />
-            <span className="gradient-text">Tanpa Batas</span>
+            <span className="gradient-text">{t('titleHighlight')}</span>
           </h1>
           <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto text-gray-300">
-            Hadirkan ide-ide kreatif Anda dalam bentuk visualisasi 3D yang memukau.
-            Platform modern untuk kreator digital masa kini.
+            {t('description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button className="button-primary w-full sm:w-auto">
-              Mulai Sekarang
+              {t('cta.button')}
             </button>
             <button className="button-secondary w-full sm:w-auto">
-              Pelajari Lebih Lanjut
+              {t('learnMore')}
             </button>
           </div>
         </div>
@@ -54,42 +58,42 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold tracking-wider uppercase mb-4 inline-block gradient-text">
-              Fitur Unggulan
+              {t('features.title')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Semua Yang Anda Butuhkan
+              {t('features.subtitle')}
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Platform lengkap dengan berbagai fitur canggih untuk membuat, mengedit,
-              dan membagikan konten 3D Anda
+              {t('features.description')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
-                title: "Real-time 3D Editing",
-                description: "Edit dan preview model 3D secara langsung di browser tanpa perlu software tambahan",
+                key: 'realtime',
                 icon: "🎨"
               },
               {
-                title: "Performa Optimal",
-                description: "Dioptimalkan untuk kinerja maksimal di semua perangkat dengan teknologi WebGL terkini",
+                key: 'performance',
                 icon: "⚡"
               },
               {
-                title: "Kolaborasi Tim",
-                description: "Bekerja bersama tim Anda dalam waktu nyata dengan fitur kolaborasi yang powerful",
+                key: 'collaboration',
                 icon: "👥"
               }
-            ].map((feature, index) => (
+            ].map((feature) => (
               <div 
-                key={index} 
+                key={feature.key} 
                 className="card-gradient p-6 rounded-2xl hover:scale-105 transition-transform duration-300"
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-4">{feature.title}</h3>
-                <p className="text-gray-300">{feature.description}</p>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  {t(`features.${feature.key}.title`)}
+                </h3>
+                <p className="text-gray-300">
+                  {t(`features.${feature.key}.description`)}
+                </p>
               </div>
             ))}
           </div>
@@ -101,13 +105,13 @@ export default function Home() {
         <div className="hero-glow top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-            Siap Untuk Memulai?
+            {t('cta.title')}
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Bergabunglah dengan ribuan kreator digital yang telah menggunakan platform kami
+            {t('cta.description')}
           </p>
           <button className="button-primary text-lg px-10 py-4">
-            Daftar Gratis
+            {t('cta.button')}
           </button>
         </div>
       </section>
