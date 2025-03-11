@@ -1,7 +1,6 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic'
-import HeroContent from '../components/HeroContent';
 
 export default function Home({ params: { locale } }: { params: { locale: string } }) {
   unstable_setRequestLocale(locale);
@@ -30,7 +29,29 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             authorUrl="https://sketchfab.com/artemybelzer"
           />
         </div>
-        <HeroContent t={t} />
+        <div className="relative z-10 text-center max-w-4xl mx-auto bg-black/30 backdrop-blur-sm p-8 rounded-2xl">
+          <span className="text-sm font-semibold tracking-wider uppercase mb-4 inline-block gradient-text">
+            {t('subtitle')}
+          </span>
+          <h1 className="hero-title text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+            {t('title')}
+            <br />
+            <span className="bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600 bg-clip-text text-transparent">
+              {t('titleHighlight')}
+            </span>
+          </h1>
+          <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto text-gray-300">
+            {t('description')}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="button-primary w-full sm:w-auto">
+              {t('cta.button')}
+            </button>
+            <button className="button-secondary w-full sm:w-auto">
+              {t('learnMore')}
+            </button>
+          </div>
+        </div>
       </section>
 
       {/* Features Section */}
