@@ -4,7 +4,7 @@ import { locales } from './i18n';
 export default createMiddleware({
   // List bahasa yang didukung
   locales: ['en', 'id'],
-  
+
   // Bahasa default
   defaultLocale: 'id',
 

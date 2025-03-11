@@ -19,7 +19,7 @@ export default function Navigation() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm w-full">
       <div className="w-full max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between w-full">
-          <Link 
+          <Link
             href={`/${locale}`}
             className="text-xl font-bold text-white hover:text-gray-200 transition-colors"
           >
