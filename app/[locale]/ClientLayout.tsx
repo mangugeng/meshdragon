@@ -1,21 +1,24 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import Navigation from '../components/Navigation';
+import { usePathname } from 'next/navigation';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import DismissibleBanner from '../components/DismissibleBanner';
 
-export default function ClientLayout({ children }: { children: React.ReactNode }) {
-  const t = useTranslations('Layout');
+export default function ClientLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+  const isEditorPage = pathname.includes('/editor');
 
   return (
     <>
-      <DismissibleBanner
-        message="This website is currently under development. Some features may not work as expected."
-      />
-      <Navigation />
+      {!isEditorPage && <DismissibleBanner />}
+      {!isEditorPage && <Navbar />}
       {children}
-      <Footer />
+      {!isEditorPage && <Footer />}
     </>
   );
 } 

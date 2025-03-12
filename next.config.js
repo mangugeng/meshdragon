@@ -17,7 +17,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: 'Permissions-Policy',
-                        value: 'accelerometer=(), deviceorientation=()'
+                        value: 'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()'
                     },
                     {
                         key: 'X-Frame-Options',

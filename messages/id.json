@@ -3,6 +3,21 @@
         "title": "MeshDragon - Platform Web3D Terkini",
         "description": "Buat, edit, dan bagikan visualisasi 3D yang memukau dengan MeshDragon. Platform modern untuk kreator digital masa kini."
     },
+    "Editor": {
+        "title": "Editor 3D",
+        "backToHome": "Kembali ke Beranda",
+        "tools": {
+            "translate": "Pindahkan",
+            "rotate": "Putar",
+            "scale": "Skala"
+        },
+        "assets": {
+            "title": "Asset",
+            "upload": "Upload Model",
+            "uploading": "Mengupload...",
+            "noModels": "Belum ada model yang diupload"
+        }
+    },
     "About": {
         "vision": {
             "title": "Visi Kami",
@@ -196,6 +211,7 @@
             "privacy": "Kebijakan Privasi",
             "terms": "Ketentuan Layanan",
             "contact": "Kontak"
-        }
+        },
+        "rights": "Hak Cipta © 2024 MeshDragon. Seluruh hak dilindungi."
     }
 }
