@@ -4,7 +4,20 @@ import { useState, useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls';
+import { 
+  ArrowsPointingOutIcon, 
+  ArrowPathIcon, 
+  ArrowsUpDownIcon,
+  CubeIcon,
+  ViewfinderCircleIcon,
+  ArrowsRightLeftIcon,
+  EyeIcon
+} from '@heroicons/react/24/solid';
 import AssetPanel from './AssetPanel';
+import TimelineAnimator from './TimelineAnimator';
+
+type ViewMode = 'perspective' | 'top' | 'front' | 'right' | 'isometric';
+type NavigationMode = 'orbit' | 'pan' | 'zoom';
 
 export default function Editor3D() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -16,6 +29,8 @@ export default function Editor3D() {
 
   const [activeMode, setActiveMode] = useState<'translate' | 'rotate' | 'scale'>('translate');
   const [selectedObject, setSelectedObject] = useState<THREE.Object3D | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>('perspective');
+  const [navigationMode, setNavigationMode] = useState<NavigationMode>('orbit');
 
   // Fungsi untuk menangani model yang diupload
   const handleModelLoad = (model: THREE.Object3D) => {
@@ -38,6 +53,66 @@ export default function Editor3D() {
         cameraRef.current.lookAt(0, 0, 0);
       }
     }
+  };
+
+  // Fungsi untuk mengubah posisi kamera berdasarkan view mode
+  const changeView = (mode: ViewMode) => {
+    if (!cameraRef.current || !orbitControlsRef.current) return;
+    
+    const camera = cameraRef.current;
+    const controls = orbitControlsRef.current;
+    
+    switch (mode) {
+      case 'top':
+        camera.position.set(0, 10, 0);
+        camera.lookAt(0, 0, 0);
+        break;
+      case 'front':
+        camera.position.set(0, 0, 10);
+        camera.lookAt(0, 0, 0);
+        break;
+      case 'right':
+        camera.position.set(10, 0, 0);
+        camera.lookAt(0, 0, 0);
+        break;
+      case 'isometric':
+        camera.position.set(5, 5, 5);
+        camera.lookAt(0, 0, 0);
+        break;
+      case 'perspective':
+        camera.position.set(5, 5, 5);
+        camera.lookAt(0, 0, 0);
+        break;
+    }
+    
+    controls.update();
+    setViewMode(mode);
+  };
+
+  // Fungsi untuk mengubah mode navigasi
+  const changeNavigationMode = (mode: NavigationMode) => {
+    if (!orbitControlsRef.current) return;
+    
+    const controls = orbitControlsRef.current;
+    
+    // Reset semua mode
+    controls.enableRotate = false;
+    controls.enablePan = false;
+    controls.enableZoom = false;
+    
+    switch (mode) {
+      case 'orbit':
+        controls.enableRotate = true;
+        break;
+      case 'pan':
+        controls.enablePan = true;
+        break;
+      case 'zoom':
+        controls.enableZoom = true;
+        break;
+    }
+    
+    setNavigationMode(mode);
   };
 
   useEffect(() => {
@@ -72,6 +147,19 @@ export default function Editor3D() {
     // Setup controls
     const orbitControls = new OrbitControls(camera, renderer.domElement);
     orbitControlsRef.current = orbitControls;
+    
+    // Konfigurasi default OrbitControls
+    orbitControls.enableRotate = true; // Orbit mode default
+    orbitControls.enablePan = false;
+    orbitControls.enableZoom = false;
+    orbitControls.enableDamping = true; // Smooth camera movement
+    orbitControls.dampingFactor = 0.05;
+    orbitControls.screenSpacePanning = true; // Pan mengikuti arah mouse
+    orbitControls.minDistance = 1; // Minimum zoom distance
+    orbitControls.maxDistance = 100; // Maximum zoom distance
+    orbitControls.zoomSpeed = 0.5; // Kurangi kecepatan zoom
+    orbitControls.panSpeed = 0.5; // Kurangi kecepatan pan
+    orbitControls.rotateSpeed = 0.5; // Kurangi kecepatan rotate
 
     const transformControls = new TransformControls(camera, renderer.domElement);
     transformControlsRef.current = transformControls;
@@ -135,6 +223,7 @@ export default function Editor3D() {
     return () => {
       window.removeEventListener('resize', handleResize);
       renderer.domElement.removeEventListener('click', handleClick);
+      orbitControls.dispose();
       if (containerRef.current && renderer.domElement) {
         containerRef.current.removeChild(renderer.domElement);
       }
@@ -150,40 +239,139 @@ export default function Editor3D() {
   }, [activeMode]);
 
   return (
-    <div className="w-full h-screen flex">
-      {/* Tools Panel */}
-      <div className="w-64 bg-gray-800 p-4 text-white">
-        <h2 className="text-xl font-bold mb-4">Tools</h2>
-        <div className="space-y-2">
-          <button
-            className={`w-full p-2 rounded ${
-              activeMode === 'translate' ? 'bg-blue-600' : 'bg-gray-700'
-            }`}
-            onClick={() => setActiveMode('translate')}
-          >
-            Translate
-          </button>
-          <button
-            className={`w-full p-2 rounded ${
-              activeMode === 'rotate' ? 'bg-blue-600' : 'bg-gray-700'
-            }`}
-            onClick={() => setActiveMode('rotate')}
-          >
-            Rotate
-          </button>
-          <button
-            className={`w-full p-2 rounded ${
-              activeMode === 'scale' ? 'bg-blue-600' : 'bg-gray-700'
-            }`}
-            onClick={() => setActiveMode('scale')}
-          >
-            Scale
-          </button>
-        </div>
+    <div className="w-full h-screen flex relative">
+      {/* Transform Tools - Top Center */}
+      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-gray-800/80 backdrop-blur-sm rounded-lg p-2 flex gap-2 z-10">
+        <button
+          className={`p-2 rounded-lg transition-colors ${
+            activeMode === 'translate' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+          }`}
+          onClick={() => setActiveMode('translate')}
+          title="Move"
+        >
+          <ArrowsUpDownIcon className="w-6 h-6 text-white" />
+        </button>
+        <button
+          className={`p-2 rounded-lg transition-colors ${
+            activeMode === 'rotate' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+          }`}
+          onClick={() => setActiveMode('rotate')}
+          title="Rotate"
+        >
+          <ArrowPathIcon className="w-6 h-6 text-white" />
+        </button>
+        <button
+          className={`p-2 rounded-lg transition-colors ${
+            activeMode === 'scale' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+          }`}
+          onClick={() => setActiveMode('scale')}
+          title="Scale"
+        >
+          <ArrowsPointingOutIcon className="w-6 h-6 text-white" />
+        </button>
       </div>
 
-      {/* 3D Viewport */}
-      <div ref={containerRef} className="flex-1 bg-gray-900" />
+      {/* 3D Viewport dengan Navigation Tools */}
+      <div ref={containerRef} className="flex-1 bg-gray-900 relative">
+        {/* Combined Navigation Tools - Kanan Atas */}
+        <div className="absolute top-4 right-4 bg-gray-800/80 backdrop-blur-sm rounded-lg p-2 flex flex-col gap-2">
+          {/* Camera Views */}
+          <div className="flex flex-col gap-2">
+            <button
+              className={`p-2 rounded-lg transition-colors ${
+                viewMode === 'perspective' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+              onClick={() => changeView('perspective')}
+              title="Perspective"
+            >
+              <CubeIcon className="w-6 h-6 text-white" />
+            </button>
+            <button
+              className={`p-2 rounded-lg transition-colors ${
+                viewMode === 'isometric' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+              onClick={() => changeView('isometric')}
+              title="Isometric"
+            >
+              <ViewfinderCircleIcon className="w-6 h-6 text-white" />
+            </button>
+          </div>
+
+          {/* Horizontal Separator */}
+          <div className="h-px w-full bg-gray-600" />
+
+          {/* Standard Views */}
+          <div className="flex flex-col gap-2">
+            <button
+              className={`p-2 rounded-lg transition-colors ${
+                viewMode === 'top' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+              onClick={() => changeView('top')}
+              title="Top View"
+            >
+              T
+            </button>
+            <button
+              className={`p-2 rounded-lg transition-colors ${
+                viewMode === 'front' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+              onClick={() => changeView('front')}
+              title="Front View"
+            >
+              F
+            </button>
+            <button
+              className={`p-2 rounded-lg transition-colors ${
+                viewMode === 'right' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+              onClick={() => changeView('right')}
+              title="Right View"
+            >
+              R
+            </button>
+          </div>
+
+          {/* Horizontal Separator */}
+          <div className="h-px w-full bg-gray-600" />
+
+          {/* Navigation Controls */}
+          <div className="flex flex-col gap-2">
+            <button
+              className={`p-2 rounded-lg transition-colors ${
+                navigationMode === 'orbit' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+              onClick={() => changeNavigationMode('orbit')}
+              title="Orbit"
+            >
+              <ArrowPathIcon className="w-6 h-6 text-white" />
+            </button>
+            <button
+              className={`p-2 rounded-lg transition-colors ${
+                navigationMode === 'pan' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+              onClick={() => changeNavigationMode('pan')}
+              title="Pan"
+            >
+              <ArrowsRightLeftIcon className="w-6 h-6 text-white" />
+            </button>
+            <button
+              className={`p-2 rounded-lg transition-colors ${
+                navigationMode === 'zoom' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+              onClick={() => changeNavigationMode('zoom')}
+              title="Zoom"
+            >
+              <EyeIcon className="w-6 h-6 text-white" />
+            </button>
+          </div>
+        </div>
+
+        {/* Timeline Animator */}
+        <TimelineAnimator 
+          camera={cameraRef.current}
+          controls={orbitControlsRef.current}
+        />
+      </div>
 
       {/* Asset Panel */}
       <AssetPanel onModelLoad={handleModelLoad} />

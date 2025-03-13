@@ -10,6 +10,7 @@
     "lint:strict": "eslint --max-warnings=0 ."
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@react-three/drei": "^9.92.7",
     "@react-three/fiber": "^8.15.12",
     "@types/three": "^0.174.0",
