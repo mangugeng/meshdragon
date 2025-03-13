@@ -1,4 +1,5 @@
 {
+    "version": 2,
     "buildCommand": "npm run build",
     "devCommand": "npm run dev",
     "installCommand": "npm install",
@@ -12,5 +13,16 @@
             "source": "/:path*",
             "destination": "/en/:path*"
         }
-    ]
+    ],
+    "builds": [
+        {
+            "src": "next.config.ts",
+            "use": "@vercel/next"
+        }
+    ],
+    "build": {
+        "env": {
+            "NODE_OPTIONS": "--max-old-space-size=4096"
+        }
+    }
 }
