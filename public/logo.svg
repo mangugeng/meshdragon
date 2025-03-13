@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Kepala Naga -->
+  <path d="M256 40
+           C180 40 120 100 120 176
+           C120 252 180 312 256 312
+           C332 312 392 252 392 176
+           C392 100 332 40 256 40Z" 
+        fill="#FF3333"/>
+  
+  <!-- Tanduk Kiri -->
+  <path d="M200 120
+           L160 60
+           L180 140Z" 
+        fill="#CC0000"/>
+  
+  <!-- Tanduk Kanan -->
+  <path d="M312 120
+           L352 60
+           L332 140Z" 
+        fill="#CC0000"/>
+  
+  <!-- Mata Kiri -->
+  <circle cx="200" cy="176" r="20" fill="#FFFFFF"/>
+  <circle cx="200" cy="176" r="10" fill="#000000"/>
+  
+  <!-- Mata Kanan -->
+  <circle cx="312" cy="176" r="20" fill="#FFFFFF"/>
+  <circle cx="312" cy="176" r="10" fill="#000000"/>
+  
+  <!-- Hidung -->
+  <path d="M256 200
+           L236 240
+           H276Z" 
+        fill="#CC0000"/>
+  
+  <!-- Sisik -->
+  <path d="M256 40
+           L236 80
+           H276Z" 
+        fill="#CC0000"/>
+  <path d="M216 60
+           L196 100
+           H236Z" 
+        fill="#CC0000"/>
+  <path d="M296 60
+           L276 100
+           H316Z" 
+        fill="#CC0000"/>
+</svg> 
