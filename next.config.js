@@ -1,43 +1,37 @@
-const withNextIntl = require('next-intl/plugin')('./i18n.ts');
+import type { NextConfig } from "next";
+import createNextIntlPlugin from 'next-intl/plugin';
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    transpilePackages: ['three'],
-    webpack: (config) => {
-        config.externals.push({
-            'utf-8-validate': 'commonjs utf-8-validate',
-            'bufferutil': 'commonjs bufferutil',
-        })
-        return config
-    },
-    async headers() {
-        return [
-            {
-                source: '/:path*',
-                headers: [
-                    {
-                        key: 'Permissions-Policy',
-                        value: 'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()'
-                    },
-                    {
-                        key: 'X-Frame-Options',
-                        value: 'SAMEORIGIN'
-                    },
-                    {
-                        key: 'X-Content-Type-Options',
-                        value: 'nosniff'
-                    }
-                ],
-            },
-        ]
-    },
-    output: 'standalone',
-    eslint: {
-        ignoreDuringBuilds: true
-    },
-    typescript: {
-        ignoreBuildErrors: true
+const withNextIntl = createNextIntlPlugin();
+
+const nextConfig: NextConfig = {
+  output: 'standalone',
+  poweredByHeader: false,
+  reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/id/editor',
+        destination: '/editor',
+        permanent: true,
+      },
+      {
+        source: '/en/editor',
+        destination: '/editor',
+        permanent: true,
+      }
+    ]
+  },
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['@heroicons/react', 'three'],
+  },
+  webpack: (config, { isServer }) => {
+    config.watchOptions = {
+      poll: 1000,
+      aggregateTimeout: 300,
     }
-}
+    return config
+  },
+};
 
-module.exports = withNextIntl(nextConfig);
+export default withNextIntl(nextConfig);
