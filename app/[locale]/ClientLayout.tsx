@@ -15,7 +15,7 @@ export default function ClientLayout({
 
   return (
     <>
-      {!isEditorPage && <DismissibleBanner />}
+      {!isEditorPage && <DismissibleBanner message="🎉 Selamat datang di MeshDragon - Platform visualisasi 3D modern untuk kreator digital" />}
       {!isEditorPage && <Navbar />}
       {children}
       {!isEditorPage && <Footer />}

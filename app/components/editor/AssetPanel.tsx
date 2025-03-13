@@ -1,112 +1,75 @@
 'use client';
 
+import * as THREE from 'three';
 import { useState, useCallback } from 'react';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 
 interface AssetPanelProps {
   onModelLoad: (model: THREE.Object3D) => void;
 }
 
 export default function AssetPanel({ onModelLoad }: AssetPanelProps) {
-  const [uploading, setUploading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [assets, setAssets] = useState<{ name: string; type: string }[]>([]);
 
   const handleFileUpload = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    setUploading(true);
+    setIsLoading(true);
     try {
+      const fileURL = URL.createObjectURL(file);
       const fileExtension = file.name.split('.').pop()?.toLowerCase();
-      const fileUrl = URL.createObjectURL(file);
 
-      let loader;
-      switch (fileExtension) {
-        case 'glb':
-        case 'gltf':
-          loader = new GLTFLoader();
-          loader.load(
-            fileUrl,
-            (gltf) => {
-              onModelLoad(gltf.scene);
-              setAssets(prev => [...prev, { name: file.name, type: 'model' }]);
-            },
-            undefined,
-            (error) => console.error('Error loading GLTF/GLB:', error)
-          );
-          break;
-        case 'obj':
-          loader = new OBJLoader();
-          loader.load(
-            fileUrl,
-            (obj) => {
-              onModelLoad(obj);
-              setAssets(prev => [...prev, { name: file.name, type: 'model' }]);
-            },
-            undefined,
-            (error) => console.error('Error loading OBJ:', error)
-          );
-          break;
-        case 'fbx':
-          loader = new FBXLoader();
-          loader.load(
-            fileUrl,
-            (fbx) => {
-              onModelLoad(fbx);
-              setAssets(prev => [...prev, { name: file.name, type: 'model' }]);
-            },
-            undefined,
-            (error) => console.error('Error loading FBX:', error)
-          );
-          break;
-        default:
-          alert('Format file tidak didukung. Silakan upload file .glb, .gltf, .obj, atau .fbx');
+      if (fileExtension === 'gltf' || fileExtension === 'glb') {
+        const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
+        const loader = new GLTFLoader();
+        const gltf = await new Promise((resolve, reject) => {
+          loader.load(fileURL, resolve, undefined, reject);
+        });
+        // @ts-ignore - we know gltf has scene
+        onModelLoad(gltf.scene);
+        setAssets(prev => [...prev, { 
+          name: file.name, 
+          type: fileExtension 
+        }]);
+      } else {
+        console.warn('Format file tidak didukung. Silakan upload file .glb atau .gltf');
       }
     } catch (error) {
-      console.error('Error uploading file:', error);
-      alert('Terjadi kesalahan saat mengupload file');
+      console.error('Error loading model:', error);
     } finally {
-      setUploading(false);
+      setIsLoading(false);
     }
   }, [onModelLoad]);
 
   return (
-    <div className="w-64 bg-gray-800 p-4 text-white">
-      <h2 className="text-xl font-bold mb-4">Assets</h2>
-
-      {/* Upload Button */}
-      <div className="mb-4">
-        <label className="block w-full">
-          <input
-            type="file"
-            className="hidden"
-            accept=".glb,.gltf,.obj,.fbx"
-            onChange={handleFileUpload}
-            disabled={uploading}
-          />
-          <span className={`block w-full text-center p-2 rounded cursor-pointer ${uploading ? 'bg-gray-600' : 'bg-blue-600 hover:bg-blue-700'
-            }`}>
-            {uploading ? 'Uploading...' : 'Upload Model'}
-          </span>
-        </label>
-      </div>
+    <div className="absolute left-4 top-4 bg-gray-800/80 backdrop-blur-sm p-4 rounded-lg">
+      <h2 className="text-white font-semibold mb-4">Asset Panel</h2>
+      <input
+        type="file"
+        accept=".gltf,.glb"
+        onChange={handleFileUpload}
+        className="block w-full text-sm text-gray-300
+          file:mr-4 file:py-2 file:px-4
+          file:rounded-full file:border-0
+          file:text-sm file:font-semibold
+          file:bg-blue-600 file:text-white
+          hover:file:bg-blue-500"
+      />
+      {isLoading && (
+        <div className="mt-2 text-white">Loading...</div>
+      )}
 
       {/* Asset List */}
-      <div className="space-y-2">
+      <div className="space-y-2 mt-4">
         <h3 className="font-medium mb-2">Uploaded Models</h3>
         {assets.length === 0 ? (
-          <p className="text-gray-400 text-sm">Belum ada model yang diupload</p>
+          <p className="text-gray-400 text-sm">No models uploaded yet</p>
         ) : (
           <ul className="space-y-1">
             {assets.map((asset, index) => (
-              <li
-                key={index}
-                className="text-sm p-2 bg-gray-700 rounded flex items-center justify-between"
-              >
-                <span className="truncate">{asset.name}</span>
-                <span className="text-xs text-gray-400">{asset.type}</span>
+              <li key={index} className="text-sm text-gray-300">
+                {asset.name}
               </li>
             ))}
           </ul>
