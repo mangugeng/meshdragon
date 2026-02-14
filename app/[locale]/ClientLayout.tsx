@@ -11,14 +11,18 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isEditorPage = pathname.includes('/editor');
+  const isEditorPage = pathname === '/editor';
+
+  if (isEditorPage) {
+    return <>{children}</>;
+  }
 
   return (
     <>
-      {!isEditorPage && <DismissibleBanner />}
-      {!isEditorPage && <Navbar />}
+      <DismissibleBanner message="🎉 Selamat datang di MeshDragon - Platform visualisasi 3D modern untuk kreator digital" />
+      <Navbar />
       {children}
-      {!isEditorPage && <Footer />}
+      <Footer />
     </>
   );
 } 

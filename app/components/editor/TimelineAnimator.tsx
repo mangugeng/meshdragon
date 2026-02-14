@@ -9,6 +9,22 @@ interface Keyframe {
   cameraTarget: THREE.Vector3;
 }
 
+interface Slide {
+  id: string;
+  title: string;
+  duration: number;
+  keyframes: Keyframe[];
+  notes?: string;
+  annotations?: Annotation[];
+}
+
+interface Annotation {
+  id: string;
+  position: THREE.Vector3;
+  text: string;
+  type: 'text' | 'highlight' | 'callout';
+}
+
 interface TimelineAnimatorProps {
   camera: THREE.PerspectiveCamera | null;
   controls: THREE.OrbitControls | null;
@@ -21,6 +37,9 @@ export default function TimelineAnimator({ camera, controls }: TimelineAnimatorP
   const [keyframes, setKeyframes] = useState<Keyframe[]>([]);
   const [fps] = useState(30);
   const [selectedKeyframe, setSelectedKeyframe] = useState<string | null>(null);
+  const [slides, setSlides] = useState<Slide[]>([]);
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const [isPresentationMode, setIsPresentationMode] = useState(false);
 
   // Fungsi untuk membuat ruler marks
   const generateTimeMarks = () => {
@@ -31,7 +50,7 @@ export default function TimelineAnimator({ camera, controls }: TimelineAnimatorP
     for (let i = 0; i <= duration; i += minorInterval) {
       const isMajor = i % majorInterval === 0;
       const position = (i / duration) * 100;
-      
+
       marks.push(
         <div key={i} className="absolute" style={{ left: `${position}%` }}>
           <div className={`${isMajor ? 'h-4 w-0.5 -top-4' : 'h-2 w-px -top-2'} absolute bg-gray-400`} />
@@ -63,16 +82,16 @@ export default function TimelineAnimator({ camera, controls }: TimelineAnimatorP
 
       // Cek apakah sudah ada keyframe di waktu yang sama
       const existingKeyframe = keyframes.find(kf => Math.abs(kf.time - currentTime) < 0.01);
-      
+
       if (existingKeyframe) {
         // Update keyframe yang sudah ada
-        const updatedKeyframes = keyframes.map(kf => 
+        const updatedKeyframes = keyframes.map(kf =>
           Math.abs(kf.time - currentTime) < 0.01
             ? {
-                ...kf,
-                cameraPosition: camera.position.clone(),
-                cameraTarget: controls.target.clone()
-              }
+              ...kf,
+              cameraPosition: camera.position.clone(),
+              cameraTarget: controls.target.clone()
+            }
             : kf
         );
         setKeyframes(updatedKeyframes);
@@ -157,7 +176,7 @@ export default function TimelineAnimator({ camera, controls }: TimelineAnimatorP
 
     // Interpolasi posisi kamera
     camera.position.lerpVectors(startFrame.cameraPosition, endFrame.cameraPosition, alpha);
-    
+
     // Interpolasi target kamera
     const targetVector = new THREE.Vector3();
     targetVector.lerpVectors(startFrame.cameraTarget, endFrame.cameraTarget, alpha);
@@ -201,122 +220,137 @@ export default function TimelineAnimator({ camera, controls }: TimelineAnimatorP
     return () => cancelAnimationFrame(animationFrame);
   }, [isPlaying, camera, controls, keyframes, currentTime]);
 
+  const addSlide = () => {
+    const newSlide: Slide = {
+      id: `slide-${Date.now()}`,
+      title: `Slide ${slides.length + 1}`,
+      duration: 5,
+      keyframes: [],
+      notes: '',
+      annotations: []
+    };
+    setSlides([...slides, newSlide]);
+  };
+
+  const updateSlide = (slideId: string, updates: Partial<Slide>) => {
+    setSlides(slides.map(slide => 
+      slide.id === slideId ? { ...slide, ...updates } : slide
+    ));
+  };
+
+  const deleteSlide = (slideId: string) => {
+    setSlides(slides.filter(slide => slide.id !== slideId));
+  };
+
+  const addAnnotation = (slideId: string, annotation: Omit<Annotation, 'id'>) => {
+    const newAnnotation: Annotation = {
+      ...annotation,
+      id: `annotation-${Date.now()}`
+    };
+    updateSlide(slideId, {
+      annotations: [...(slides.find(s => s.id === slideId)?.annotations || []), newAnnotation]
+    });
+  };
+
   return (
-    <div className="absolute bottom-0 left-0 right-0 bg-gray-800/80 backdrop-blur-sm p-4 flex flex-col gap-2">
-      {/* Timeline Controls */}
-      <div className="flex items-center gap-4 w-full">
-        <div className="flex gap-2">
+    <div className="bg-gray-800 p-4 rounded-lg">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex space-x-2">
           <button
-            onClick={isPlaying ? pauseAnimation : playAnimation}
-            className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white"
-            title={isPlaying ? "Pause" : "Play"}
+            onClick={() => setIsPlaying(!isPlaying)}
+            className="p-2 rounded bg-gray-700 hover:bg-gray-600"
           >
-            {isPlaying ? (
-              <PauseIcon className="w-6 h-6" />
-            ) : (
-              <PlayIcon className="w-6 h-6" />
-            )}
+            {isPlaying ? <PauseIcon className="w-5 h-5" /> : <PlayIcon className="w-5 h-5" />}
           </button>
           <button
-            onClick={stopAnimation}
-            className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white"
-            title="Stop"
+            onClick={() => setIsPlaying(false)}
+            className="p-2 rounded bg-gray-700 hover:bg-gray-600"
           >
-            <StopIcon className="w-6 h-6" />
+            <StopIcon className="w-5 h-5" />
           </button>
         </div>
+        <div className="flex items-center space-x-4">
+          <button
+            onClick={() => setIsPresentationMode(!isPresentationMode)}
+            className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500"
+          >
+            {isPresentationMode ? 'Exit Presentation' : 'Start Presentation'}
+          </button>
+        </div>
+      </div>
 
-        <div className="flex items-center gap-2 text-white flex-1">
-          <span>{currentTime.toFixed(2)}s</span>
-          <div className="flex-1 relative">
-            <input
-              type="range"
-              min="0"
-              max={duration}
-              step="0.01"
-              value={currentTime}
-              onChange={(e) => handleTimeChange(parseFloat(e.target.value))}
-              className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+      {isPresentationMode ? (
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-semibold">{slides[currentSlide]?.title}</h3>
+            <div className="flex space-x-2">
+              <button
+                onClick={() => setCurrentSlide(Math.max(0, currentSlide - 1))}
+                disabled={currentSlide === 0}
+                className="px-3 py-1 rounded bg-gray-700 disabled:opacity-50"
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => setCurrentSlide(Math.min(slides.length - 1, currentSlide + 1))}
+                disabled={currentSlide === slides.length - 1}
+                className="px-3 py-1 rounded bg-gray-700 disabled:opacity-50"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+          <div className="h-2 bg-gray-700 rounded">
+            <div
+              className="h-full bg-blue-500 rounded"
+              style={{ width: `${(currentTime / duration) * 100}%` }}
             />
           </div>
-          <span>{duration}s</span>
         </div>
-
-        <button
-          onClick={addKeyframe}
-          disabled={!camera || !controls}
-          className={`px-3 py-1 rounded-lg ${
-            camera && controls 
-              ? 'bg-blue-600 hover:bg-blue-500' 
-              : 'bg-gray-500 cursor-not-allowed'
-          } text-white flex items-center gap-1`}
-          title={camera && controls ? "Add/Update Keyframe" : "Camera not ready"}
-        >
-          <span className="text-sm">Add Keyframe</span>
-          {keyframes.find(kf => Math.abs(kf.time - currentTime) < 0.01) && 
-            <span className="text-xs">(Update)</span>
-          }
-        </button>
-
-        <input
-          type="number"
-          value={duration}
-          onChange={(e) => setDuration(Math.max(1, parseInt(e.target.value) || 1))}
-          className="w-20 px-2 py-1 rounded bg-gray-700 text-white"
-          min="1"
-          title="Animation Duration (seconds)"
-        />
-      </div>
-
-      {/* Timeline with Ruler */}
-      <div className="relative h-16 bg-gray-700 rounded">
-        {/* Ruler */}
-        <div className="absolute top-0 left-0 right-0 h-8">
-          {generateTimeMarks()}
-        </div>
-
-        {/* Keyframe Markers */}
-        <div className="absolute bottom-0 left-0 right-0 h-8">
-          {keyframes.map((kf) => (
-            <div
-              key={kf.id}
-              className={`absolute bottom-0 flex flex-col items-center cursor-pointer group ${
-                selectedKeyframe === kf.id ? 'z-10' : ''
-              }`}
-              style={{ left: `${(kf.time / duration) * 100}%` }}
-              onClick={() => selectKeyframe(kf.id)}
+      ) : (
+        <div className="space-y-4">
+          <div className="flex justify-between items-center">
+            <h3 className="text-lg font-semibold">Slides</h3>
+            <button
+              onClick={addSlide}
+              className="px-3 py-1 rounded bg-blue-600 hover:bg-blue-500"
             >
-              {/* Keyframe Marker */}
-              <div className={`w-4 h-4 rounded-full ${
-                selectedKeyframe === kf.id ? 'bg-blue-500' : 'bg-blue-400'
-              } hover:bg-blue-300 transform -translate-x-1/2`} />
-              
-              {/* Delete Button - Visible on Hover */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  deleteKeyframe(kf.id);
-                }}
-                className="absolute -top-6 opacity-0 group-hover:opacity-100 p-1 rounded bg-red-500 hover:bg-red-400"
-                title="Delete Keyframe"
+              Add Slide
+            </button>
+          </div>
+          <div className="space-y-2">
+            {slides.map((slide, index) => (
+              <div
+                key={slide.id}
+                className={`p-3 rounded ${
+                  currentSlide === index ? 'bg-blue-900' : 'bg-gray-700'
+                }`}
               >
-                <TrashIcon className="w-4 h-4 text-white" />
-              </button>
-
-              {/* Time Label */}
-              <div className="absolute -bottom-6 transform -translate-x-1/2 text-xs text-gray-300">
-                {kf.time.toFixed(1)}s
+                <div className="flex justify-between items-center">
+                  <input
+                    type="text"
+                    value={slide.title}
+                    onChange={(e) => updateSlide(slide.id, { title: e.target.value })}
+                    className="bg-transparent border-none focus:ring-0"
+                  />
+                  <button
+                    onClick={() => deleteSlide(slide.id)}
+                    className="p-1 rounded hover:bg-gray-600"
+                  >
+                    <TrashIcon className="w-4 h-4" />
+                  </button>
+                </div>
+                <textarea
+                  value={slide.notes || ''}
+                  onChange={(e) => updateSlide(slide.id, { notes: e.target.value })}
+                  placeholder="Add notes..."
+                  className="w-full mt-2 bg-gray-600 rounded p-2 text-sm"
+                />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-
-        {/* Current Time Indicator */}
-        <div
-          className="absolute top-0 bottom-0 w-0.5 bg-white"
-          style={{ left: `${(currentTime / duration) * 100}%` }}
-        />
-      </div>
+      )}
     </div>
   );
 } 

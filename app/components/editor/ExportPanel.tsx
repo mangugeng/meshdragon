@@ -14,30 +14,36 @@ interface ExportConfig {
   includeStats: boolean;
   backgroundColor: string;
   responsive: boolean;
+  exportFormat: 'html' | 'pdf' | 'video';
+  includeAnnotations: boolean;
+  includeNotes: boolean;
+  autoPlay: boolean;
+  loop: boolean;
 }
 
 export default function ExportPanel({ onExport }: ExportPanelProps) {
   const [config, setConfig] = useState<ExportConfig>({
-    title: 'My 3D Scene',
+    title: 'My 3D Presentation',
     description: 'Generated with MeshDragon',
     includeOrbitControls: true,
     includeLighting: true,
     includeStats: false,
     backgroundColor: '#000000',
-    responsive: true
+    responsive: true,
+    exportFormat: 'html',
+    includeAnnotations: true,
+    includeNotes: true,
+    autoPlay: true,
+    loop: false
   });
-
-  const handleExport = () => {
-    onExport(config);
-  };
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-white">Export</h3>
+      <h3 className="text-lg font-semibold text-white">Export Presentation</h3>
       
       <div className="space-y-3">
         <div>
-          <label className="block text-sm text-gray-300 mb-1">Page Title</label>
+          <label className="block text-sm text-gray-300 mb-1">Title</label>
           <input
             type="text"
             value={config.title}
@@ -52,50 +58,70 @@ export default function ExportPanel({ onExport }: ExportPanelProps) {
             value={config.description}
             onChange={(e) => setConfig({ ...config, description: e.target.value })}
             className="w-full bg-gray-700 text-white px-3 py-2 rounded-md"
-            rows={2}
+            rows={3}
           />
         </div>
 
+        <div>
+          <label className="block text-sm text-gray-300 mb-1">Export Format</label>
+          <select
+            value={config.exportFormat}
+            onChange={(e) => setConfig({ ...config, exportFormat: e.target.value as ExportConfig['exportFormat'] })}
+            className="w-full bg-gray-700 text-white px-3 py-2 rounded-md"
+          >
+            <option value="html">HTML (Interactive)</option>
+            <option value="pdf">PDF (Static)</option>
+            <option value="video">Video</option>
+          </select>
+        </div>
+
         <div className="space-y-2">
-          <label className="flex items-center space-x-2">
+          <label className="block text-sm text-gray-300">Options</label>
+          <div className="flex items-center space-x-2">
             <input
               type="checkbox"
               checked={config.includeOrbitControls}
               onChange={(e) => setConfig({ ...config, includeOrbitControls: e.target.checked })}
-              className="form-checkbox"
+              className="rounded bg-gray-700"
             />
             <span className="text-sm text-gray-300">Include Orbit Controls</span>
-          </label>
-
-          <label className="flex items-center space-x-2">
+          </div>
+          <div className="flex items-center space-x-2">
             <input
               type="checkbox"
-              checked={config.includeLighting}
-              onChange={(e) => setConfig({ ...config, includeLighting: e.target.checked })}
-              className="form-checkbox"
+              checked={config.includeAnnotations}
+              onChange={(e) => setConfig({ ...config, includeAnnotations: e.target.checked })}
+              className="rounded bg-gray-700"
             />
-            <span className="text-sm text-gray-300">Include Lighting</span>
-          </label>
-
-          <label className="flex items-center space-x-2">
+            <span className="text-sm text-gray-300">Include Annotations</span>
+          </div>
+          <div className="flex items-center space-x-2">
             <input
               type="checkbox"
-              checked={config.includeStats}
-              onChange={(e) => setConfig({ ...config, includeStats: e.target.checked })}
-              className="form-checkbox"
+              checked={config.includeNotes}
+              onChange={(e) => setConfig({ ...config, includeNotes: e.target.checked })}
+              className="rounded bg-gray-700"
             />
-            <span className="text-sm text-gray-300">Include Performance Stats</span>
-          </label>
-
-          <label className="flex items-center space-x-2">
+            <span className="text-sm text-gray-300">Include Notes</span>
+          </div>
+          <div className="flex items-center space-x-2">
             <input
               type="checkbox"
-              checked={config.responsive}
-              onChange={(e) => setConfig({ ...config, responsive: e.target.checked })}
-              className="form-checkbox"
+              checked={config.autoPlay}
+              onChange={(e) => setConfig({ ...config, autoPlay: e.target.checked })}
+              className="rounded bg-gray-700"
             />
-            <span className="text-sm text-gray-300">Responsive</span>
-          </label>
+            <span className="text-sm text-gray-300">Auto Play</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={config.loop}
+              onChange={(e) => setConfig({ ...config, loop: e.target.checked })}
+              className="rounded bg-gray-700"
+            />
+            <span className="text-sm text-gray-300">Loop Presentation</span>
+          </div>
         </div>
 
         <div>
@@ -104,15 +130,15 @@ export default function ExportPanel({ onExport }: ExportPanelProps) {
             type="color"
             value={config.backgroundColor}
             onChange={(e) => setConfig({ ...config, backgroundColor: e.target.value })}
-            className="w-full bg-gray-700 rounded-md h-8"
+            className="w-full h-10 rounded-md"
           />
         </div>
 
         <button
-          onClick={handleExport}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
+          onClick={() => onExport(config)}
+          className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500"
         >
-          Export to HTML
+          Export Presentation
         </button>
       </div>
     </div>

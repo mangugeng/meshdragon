@@ -1,8 +1,7 @@
 'use client'
 
-import { useLocale } from 'next-intl'
-import { usePathname, useRouter } from 'next-intl/client'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import { useRouter, usePathname } from 'next/navigation'
 import { ChangeEvent } from 'react'
 
 export default function LanguageSwitcher() {
@@ -12,7 +11,11 @@ export default function LanguageSwitcher() {
   const pathname = usePathname()
 
   const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    router.replace(pathname, { locale: e.target.value })
+    const newLocale = e.target.value
+    const newPath = pathname.startsWith('/' + locale) 
+      ? pathname.replace('/' + locale, '/' + newLocale)
+      : '/' + newLocale + pathname
+    router.push(newPath)
   }
 
   return (
@@ -21,11 +24,11 @@ export default function LanguageSwitcher() {
         id="language-select"
         value={locale}
         onChange={handleLanguageChange}
-        className="block w-full px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+        className="block w-full px-3 py-2 text-sm text-gray-300 bg-transparent border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-500"
         aria-label={t('language')}
       >
-        <option value="en">{t('english')}</option>
-        <option value="id">{t('indonesian')}</option>
+        <option value="en" className="bg-gray-800">English</option>
+        <option value="id" className="bg-gray-800">Indonesia</option>
       </select>
     </div>
   )
